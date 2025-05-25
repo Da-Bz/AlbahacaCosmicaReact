@@ -1,0 +1,48 @@
+#banner {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+#video-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+#promos,
+#carta {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fff;
+}
+
+#promos h1,
+#carta h1 {
+    font-size: 2.5rem;
+    color: #B52A04;
+    margin-bottom: 30px;
+}
+
+.promos-container,
+.carta-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+
+@media (max-width: 768px) {
+    #banner {
+        height: 200px;
+    }
+
+    #promos h1,
+    #carta h1 {
+        font-size: 2rem;
+    }
+}

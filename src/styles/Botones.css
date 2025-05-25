@@ -1,0 +1,32 @@
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:first-of-type {
+  background-color: #4CAF50;
+  color: white;
+}
+
+button:first-of-type:hover {
+  background-color: #45a049;
+}
+
+button:last-of-type {
+  background-color: #2196F3;
+  color: white;
+}
+
+button:last-of-type:hover {
+  background-color: #1976D2;
+}
