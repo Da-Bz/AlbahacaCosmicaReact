@@ -1,12 +1,43 @@
-# React + Vite
+# Albahaca Cósmica 🌿 - E-commerce React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una tienda online ficticia desarrollada como ejercicio práctico para la cursada de React (Comisión 25021) en Talento Tech.
+#### Alumno:  BLANEZ, Damian
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+Se utilizaron las siguientes tecnologías y herramientas durante el desarrollo:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React + Vite**: Base para la construcción de la interfaz de usuario y mejora del rendimiento del entorno de desarrollo.
+- **React Router Dom**: Para el manejo de rutas dinámicas y navegación dentro de la SPA.
+- **MockAPI**: API simulada para obtener productos, categorías y demás datos.  
+- **SweetAlert2**: Alertas interactivas y personalizadas para mejorar la experiencia del usuario.
+---
+
+## 🔧 Características del Proyecto
+
+- Catálogo dinámico de productos.
+- Carrito de compras.
+- Rutas protegidas/dinamicas.
+- Secciones estáticas: Home, Sobre Nosotros, Testimonios, Contacto.
+- Responsive y adaptado para múltiples dispositivos.
+
+## ▶️ Cómo Ejecutar el Proyecto
+
+#### 1. Clonar el repositorio:
+
+```sh
+git clone https://github.com/Da-Bz/AlbahacaCosmicaReact.git
+cd AlbahacaCosmicaReact 
+```
+#### 2. Instalar dependencias
+```sh
+npm install
+```
+#### 3. Ejecutar el servidor.
+```sh
+npm run dev
+```
+
+> ⚠️ **Importante:** Este proyecto tiene una finalidad puramente académica y de demostración. No representa una entidad comercial real ni ofrece productos o servicios para la venta.
