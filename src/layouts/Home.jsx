@@ -1,50 +1,107 @@
 import React, { useEffect, useState } from 'react';
-import '../styles/Home.css';
-import Card from '../components/Card';
-import About from '../components/About'
+import { useProductosContext } from '../contextos/ProductosContext';
+import { useSearch } from '../contextos/SearchContext';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+
+import About from '../components/About';
 import Testimonial from '../components/Testimonial';
 import Contact from '../components/Contact';
+import Card from '../components/Card';
 
 const Home = () => {
-  const [productos, setProductos] = useState([]);
-  const [cargando, setCargando] = useState(true);
-  const [error, setError] = useState(null);
+  const { productos, loading, error } = useProductosContext();
+  const { searchTerm } = useSearch();
+
+  const [productosFiltrados, setProductosFiltrados] = useState([]);
+  const [promociones, setPromociones] = useState([]);
 
   useEffect(() => {
-    fetch("https://68309f786205ab0d6c39d76a.mockapi.io/productos")
-      .then(res => res.json())
-      .then(data => {
-        setProductos(data.slice(0, 4)); // Mostramos solo los primeros 4
-        setCargando(false);
-      })
-      .catch(err => {
-        console.error("Error al cargar promociones:", err);
-        setError("No se pudieron cargar las promociones.");
-        setCargando(false);
-      });
-  }, []);
+    // promociones: primeros 4 productos
+    setPromociones(productos.slice(0, 4));
+  }, [productos]);
+
+  useEffect(() => {
+    if (searchTerm.trim() === '') {
+      setProductosFiltrados([]);
+    } else {
+      const filtrados = productos.filter(prod =>
+        (prod.name && prod.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (prod.description && prod.description.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+      setProductosFiltrados(filtrados);
+    }
+  }, [searchTerm, productos]);
 
   return (
-    <main>    
-      <About />
+    <main className="container my-5">
+      <Helmet>
+        <title>Inicio | Albahaca Cósmica</title>
+        <meta
+          name="description"
+          content="Descubre el sabor único de nuestras pizzas artesanales. ¡Pide ahora y disfruta!"
+        />
+      </Helmet>
 
-        <section className="menu-preview">
-          <h2>Promociones Cósmicas</h2>
-          <div className="promo-container">
-            {cargando && <p>Cargando promociones...</p>}
-            {error && <p>{error}</p>}
-            {!cargando && !error && productos.map((producto) => (
-              <Card key={producto.id} producto={producto} />
-            ))}
-          </div>
-        </section>
+      {searchTerm.trim() !== '' ? (
+        <>
+          <h2 className="text-center mb-4" style={{ color: '#B52A04' }}>
+            Resultados de búsqueda para "{searchTerm}"
+          </h2>
 
-        <Testimonial />
-        <Contact />
-        
+          {loading && (
+            <div className="text-center my-4">
+              <div className="spinner-border text-warning" role="status">
+                <span className="visually-hidden">Cargando productos...</span>
+              </div>
+            </div>
+          )}
+
+          {error && <div className="alert alert-danger">{error}</div>}
+
+          <section aria-label="Listado de productos" className="row justify-content-center mb-5">
+            {productosFiltrados.length > 0 ? (
+              productosFiltrados.map((prod) => (
+                <div className="card m-3" key={prod.id} style={{ width: '18rem' }}>
+                  <div className="image">
+                    <img src={prod.imagen || 'https://via.placeholder.com/250x200'} alt={prod.name} />
+                  </div>
+                  <div className="content p-3">
+                    <h3>{prod.name}</h3>
+                    <p>${prod.price}</p>
+                    <Link to={`/producto/${prod.id}`} className="btn btn-warning">
+                      Ver detalles del producto
+                    </Link>
+                  </div>
+                </div>
+              ))
+            ) : (
+              !loading && <p className="text-center mt-4">No se encontraron productos que coincidan con tu búsqueda.</p>
+            )}
+          </section>
+        </>
+      ) : (
+        <>
+          {/* Contenido normal sin búsqueda */}
+          <section className="menu-preview mb-5">
+            <h2>Promociones Cósmicas</h2>
+            <div className="promo-container d-flex flex-wrap justify-content-center">
+              {loading && <p>Cargando promociones...</p>}
+              {!loading && promociones.length === 0 && <p>No hay promociones disponibles.</p>}
+              {!loading &&
+                promociones.map((producto) => (
+                  <Card key={producto.id} producto={producto} />
+                ))}
+            </div>
+          </section>
+
+          <About />
+          <Testimonial />
+          <Contact />
+        </>
+      )}
     </main>
   );
 };
 
 export default Home;
-

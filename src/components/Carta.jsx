@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 import "../styles/Carta.css";
+import { Helmet } from "react-helmet";
 
 function Carta() {
     const [productos, setProductos] = useState([]);
@@ -19,19 +20,19 @@ function Carta() {
             });
     }, []);
 
+    if (loading) return <p>Cargando productos...</p>;
 
-    if (loading) {
-        return <p>Cargando productos...</p>;
-    }
-
-    // Tomo las primeras 4 como promociones
     const promos = productos.slice(0, 4);
-    // El resto como productos normales
     const productosRestantes = productos.slice(4);
 
     return (
         <main>
-            <section id="promos">
+            <Helmet>
+                <title>Albahaca Cósmica 🍕 | Nuestra Carta</title>
+                <meta name="description" content="Explorá la carta completa con nuestras pizzas, promociones y más." />
+            </Helmet>
+
+            <section id="promos" aria-label="Sección de promociones">
                 <h1>Promociones</h1>
                 <div className="promos-container">
                     {promos.map((promo) => (
@@ -40,7 +41,7 @@ function Carta() {
                 </div>
             </section>
 
-            <section id="carta">
+            <section id="carta" aria-label="Sección de productos">
                 <h1>Nuestra Carta</h1>
                 <div className="carta-container">
                     {productosRestantes.length === 0 ? (
@@ -52,7 +53,6 @@ function Carta() {
                     )}
                 </div>
             </section>
-
         </main>
     );
 }

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import CarritoCard from "./CarritoCard";
+import { useCarritoContext } from "../contextos/CarritoContext"; // Asegurate del path correcto
 import "../styles/Carrito.css";
 
-export default function Carrito({ productosCarrito, funcionBorrar }) {
+export default function Carrito() {
+  const { productosCarrito, borrarProductoCarrito } = useCarritoContext();
+
   const [cupon, setCupon] = useState("");
   const [descuentoAplicado, setDescuentoAplicado] = useState(0);
   const [mensajeCupon, setMensajeCupon] = useState("");
@@ -28,7 +31,7 @@ export default function Carrito({ productosCarrito, funcionBorrar }) {
   return (
     <CarritoCard
       productosCarrito={productosCarrito}
-      funcionBorrar={funcionBorrar}
+      funcionBorrar={borrarProductoCarrito}
       cupon={cupon}
       setCupon={setCupon}
       aplicarCupon={aplicarCupon}

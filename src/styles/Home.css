@@ -16,9 +16,6 @@
 
 .menu-preview {
     background-color: #FACD8E;
-}
-
-.menu-preview {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -40,4 +37,40 @@
 
 .contact-info li {
     margin-bottom: 10px;
+}
+
+.search-section {
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #eee;
+}
+
+.search-section h2 {
+    color: #333;
+}
+
+.form-control {
+    border: 2px solid #FBBF58;
+    border-radius: 0.5rem;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #FF8C00;
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.2);
+}
+
+.form-control::placeholder {
+    color: #aaa;
+}
+
+.text-center {
+    color: #666;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+    .search-section h2 {
+        font-size: 1.5rem;
+    }
 }

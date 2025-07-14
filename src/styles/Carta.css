@@ -1,3 +1,4 @@
+/* Banner con video de fondo */
 #banner {
     position: relative;
     width: 100%;
@@ -10,8 +11,10 @@
     height: 100%;
     object-fit: cover;
     filter: brightness(0.6);
+    /* Oscurece el video para que el texto o elementos encima resalten */
 }
 
+/* Secciones promociones y carta */
 #promos,
 #carta {
     padding: 40px 20px;
@@ -19,6 +22,7 @@
     background-color: #fff;
 }
 
+/* Títulos de secciones */
 #promos h1,
 #carta h1 {
     font-size: 2.5rem;
@@ -26,6 +30,7 @@
     margin-bottom: 30px;
 }
 
+/* Contenedores de tarjetas */
 .promos-container,
 .carta-container {
     display: flex;
@@ -35,7 +40,7 @@
     margin: 20px 0;
 }
 
-
+/* Responsividad para tablets y móviles */
 @media (max-width: 768px) {
     #banner {
         height: 200px;

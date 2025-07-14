@@ -19,6 +19,7 @@
   object-fit: cover;
   box-shadow: 0 6px 20px rgba(181, 42, 4, 0.25);
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .detalle-imagen:hover {
@@ -39,6 +40,7 @@
   margin-bottom: 20px;
   font-weight: 700;
   font-family: 'Yeseva One', serif;
+  text-align: center;
 }
 
 .detalle-info p {
@@ -106,6 +108,8 @@
   transition: background-color 0.3s ease, color 0.3s ease;
   box-shadow: 0 6px 18px rgba(181, 42, 4, 0.6);
   align-self: center;
+  max-width: 300px;
+  width: 100%;
 }
 
 .detalle-info > button:hover {
